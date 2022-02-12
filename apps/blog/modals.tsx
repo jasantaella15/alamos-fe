@@ -1,9 +1,9 @@
 import { ModalRoutesType } from './models/modals';
-import Post from './pages/post/[slug]';
+import { PostComponent } from './pages/post/[slug]';
 
 export const ModalRoutes: ModalRoutesType = {
   post_view: {
-    component: Post,
+    component: PostComponent,
     params: ['slug']
   }
 };
