@@ -71,7 +71,7 @@ class ApolloService {
    * just one instance of each subclass around.
    */
   public static getInstance(): ApolloService {
-    if (!ApolloService.instance || typeof window === 'undefined') {
+    if (!ApolloService.instance) {
       ApolloService.instance = new ApolloService();
     }
     return ApolloService.instance;
