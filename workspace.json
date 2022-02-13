@@ -91,6 +91,12 @@
           "options": {
             "lintFilePatterns": ["libs/graphql-service/**/*.ts"]
           }
+        },
+        "generate-types": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["graphql-codegen"]
+          }
         }
       }
     },

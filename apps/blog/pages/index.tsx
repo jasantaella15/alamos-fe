@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import { Modal } from '../models/modals';
-import { ApolloService, HomePage, Post } from '@alamos-fe/graphql-service';
+import { ApolloService, useArticlesQuery, useHomePageQuery } from '@alamos-fe/graphql-service';
 import { PostPreview } from '@alamos-fe/material-ui-core';
 import { useRouter } from 'next/dist/client/router';
 import { GetStaticProps } from 'next';
@@ -15,8 +15,8 @@ import withApolloCache from '../hoc/withApolloCache';
 const Index: React.FC = () => {
   const { push, locale } = useRouter();
   const queryOptions = { variables: { locale } };
-  const { data: HomePageData } = useQuery<{ homepage: HomePage }>(ApolloService.home.queries.GET, queryOptions);
-  const { data: PostData } = useQuery<{ articles: Post[] }>(ApolloService.post.queries.GET_ALL, queryOptions);
+  const { data: HomePageData } = useHomePageQuery();
+  const { data: PostData } = useArticlesQuery(queryOptions);
   return (
     <Page title={HomePageData?.homepage?.seo?.metaTitle}>
       <div className="bg-gray-50">
@@ -49,7 +49,6 @@ const Index: React.FC = () => {
                 push(`/?slug=${post.slug}&modal=${Modal.post_view}`, `/post/${post.slug}/`, { shallow: true })
               }
               key={post.id}
-              id={post.id}
               title={post.title}
               content={post.description}
               imageUrl={post.image.url}

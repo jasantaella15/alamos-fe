@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 
 /* eslint-disable-next-line */
 export interface PostPreviewProps {
-  id: number;
   title: string;
   imageUrl: string;
   content: string;

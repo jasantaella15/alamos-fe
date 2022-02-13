@@ -1,0 +1,8 @@
+schema: https://alamos-be.herokuapp.com/graphql
+documents: './libs/graphql-service/**/*.ts'
+generates:
+  ./libs/graphql-service/src/lib/services/operations.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

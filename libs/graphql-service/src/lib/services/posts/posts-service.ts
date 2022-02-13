@@ -1,6 +1,6 @@
 import * as Queries from './posts-queries';
-import { Post } from './posts-models';
 import BaseService from '../baseService';
+import { ArticlesBySlugQuery, ArticlesQuery, SlugsQuery } from '../operations';
 
 export class PostService extends BaseService {
   queries = {
@@ -9,13 +9,13 @@ export class PostService extends BaseService {
     GET_ALL_SLUG: Queries.GET_ALL_SLUG
   };
   getAll() {
-    return this.runQuery<{ articles: Post[] }>(this.queries.GET_ALL);
+    return this.runQuery<ArticlesQuery>(this.queries.GET_ALL);
   }
   getBySlug(slug: string) {
-    return this.runQuery<{ articles: Post[] }>(this.queries.GET_BY_SLUG, { slug });
+    return this.runQuery<ArticlesBySlugQuery>(this.queries.GET_BY_SLUG, { slug });
   }
   getSlugs() {
-    return this.runQuery<{ articles: Post[] }>(this.queries.GET_ALL_SLUG);
+    return this.runQuery<SlugsQuery>(this.queries.GET_ALL_SLUG);
   }
 }
 

@@ -32,7 +32,7 @@ export const GET_ALL = gql`
   }
 `;
 export const GET_BY_SLUG = gql`
-  query Articles($slug: String!, $locale: String!) {
+  query ArticlesBySlug($slug: String!, $locale: String!) {
     articles(locale: $locale, limit: 1, where: { slug: $slug }) {
       id
       title
@@ -64,7 +64,7 @@ export const GET_BY_SLUG = gql`
   }
 `;
 export const GET_ALL_SLUG = gql`
-  query Articles($locale: String!) {
+  query Slugs($locale: String!) {
     articles(locale: $locale) {
       slug
       localizations {

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET = gql`
-  query {
+  query HomePage {
     homepage {
       seo {
         metaTitle

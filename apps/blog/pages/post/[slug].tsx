@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { ApolloService, Post } from '@alamos-fe/graphql-service';
+import { ApolloService, ArticlesBySlugDocument, useArticlesBySlugQuery } from '@alamos-fe/graphql-service';
 import { blurHashToBase64 } from '@alamos-fe/utils';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -15,7 +15,7 @@ export const PostComponent: React.FC = () => {
   const { locale, query } = useRouter();
   const slug = query.slug?.toString();
   const queryOptions = { variables: { locale, slug }, skip: !slug };
-  const { data: postData } = useQuery<{ articles: Post[] }>(ApolloService.post.queries.GET_BY_SLUG, queryOptions);
+  const { data: postData } = useArticlesBySlugQuery(queryOptions);
   const post = postData && postData.articles[0];
 
   if (!post) return null;
