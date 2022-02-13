@@ -95,7 +95,7 @@
         "generate-types": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["graphql-codegen"]
+            "commands": ["graphql-codegen --config ./libs/graphql-service/codegen.yml"]
           }
         }
       }
