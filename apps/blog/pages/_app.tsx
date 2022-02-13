@@ -18,7 +18,7 @@ import { ModalRoutes } from '../modals';
 
 import '../styles/global.scss';
 import theme from '../theme';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { GetStaticProps } from 'next';
 
 export interface MyAppProps extends AppProps {
@@ -28,6 +28,10 @@ export interface MyAppProps extends AppProps {
 function CustomApp({ Component, pageProps, emotionCache = createCache({ key: 'css' }) }: MyAppProps) {
   const { t } = useTranslation();
   const { locale, locales, query, back, push } = useRouter();
+  const useApolloClient = useMemo(
+    () => ApolloService.getClient(pageProps[ApolloService.initialCacheState]),
+    [pageProps[ApolloService.initialCacheState]]
+  );
 
   const renderModal = () => {
     const modal = query.modal?.toString();
@@ -40,7 +44,6 @@ function CustomApp({ Component, pageProps, emotionCache = createCache({ key: 'cs
       </FullScreenDialog>
     );
   };
-
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -63,7 +66,7 @@ function CustomApp({ Component, pageProps, emotionCache = createCache({ key: 'cs
           <main className="flex flex-col overflow-x-auto flex-grow pb-2">
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <ApolloProvider client={ApolloService.getClient()}>
+            <ApolloProvider client={useApolloClient}>
               <Component {...pageProps} />
               {renderModal()}
             </ApolloProvider>

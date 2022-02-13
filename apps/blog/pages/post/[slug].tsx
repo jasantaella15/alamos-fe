@@ -65,4 +65,4 @@ export const getStaticProps: GetStaticProps = withApolloStaticProps(async ({ par
   };
 });
 
-export default withApolloCache(PostComponent);
+export default PostComponent;

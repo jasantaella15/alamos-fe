@@ -4,6 +4,7 @@ import { GetStaticProps, GetStaticPropsContext } from 'next';
 export const withApolloStaticProps = (fn: (props: GetStaticPropsContext) => Promise<{ props }>) => {
   const getStaticPropsFn: GetStaticProps = async (ctx) => {
     const { locale } = ctx;
+    await ApolloService.clearCache();
     ApolloService.setLocale(locale);
     const { props } = await fn(ctx);
     return {

@@ -10,7 +10,6 @@ import nextI18NextConfig from '../next-i18next.config.js';
 
 import Page from '../components/page';
 import withApolloStaticProps from '../hoc/withApolloStaticProps';
-import withApolloCache from '../hoc/withApolloCache';
 
 const Index: React.FC = () => {
   const { push, locale } = useRouter();
@@ -70,4 +69,4 @@ export const getStaticProps: GetStaticProps = withApolloStaticProps(async ({ loc
   };
 });
 
-export default withApolloCache(Index);
+export default Index;

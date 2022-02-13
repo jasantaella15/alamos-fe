@@ -19,7 +19,8 @@ class ApolloService {
     this.post = new PostService(this.runQuery);
     this.home = new HomePageService(this.runQuery);
   }
-  public getClient() {
+  public getClient(cache?: NormalizedCacheObject) {
+    if (cache) this.restoreCache(cache);
     return ApolloService.client;
   }
   public extractCache(): NormalizedCacheObject {
@@ -31,6 +32,9 @@ class ApolloService {
 
   public setLocale(locale: string) {
     ApolloService.localization.default = locale;
+  }
+  public async clearCache() {
+    return await ApolloService.client.clearStore();
   }
 
   private runQuery<T>(query: DocumentNode, variables?: Record<string, string>) {
