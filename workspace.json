@@ -8,7 +8,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/next:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "root": "apps/blog",
             "outputPath": "dist/apps/blog"
@@ -38,7 +40,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/blog"],
+          "outputs": [
+            "coverage/apps/blog"
+          ],
           "options": {
             "jestConfig": "apps/blog/jest.config.js",
             "passWithNoTests": true
@@ -46,12 +50,17 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/blog/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/blog/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-e2e": {
       "root": "apps/blog-e2e",
@@ -73,12 +82,20 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/blog-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/blog-e2e/**/*.{js,ts}"
+            ]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": [
+        "blog"
+      ]
     },
     "graphql-service": {
       "root": "libs/graphql-service",
@@ -87,18 +104,25 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/graphql-service/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/graphql-service/**/*.ts"
+            ]
           }
         },
         "generate-types": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["graphql-codegen --config ./libs/graphql-service/codegen.yml"]
+            "commands": [
+              "graphql-codegen --config ./libs/graphql-service/codegen.yml"
+            ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "material-ui-core": {
       "root": "libs/material-ui-core",
@@ -107,20 +131,27 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/material-ui-core/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/material-ui-core/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/material-ui-core"],
+          "outputs": [
+            "coverage/libs/material-ui-core"
+          ],
           "options": {
             "jestConfig": "libs/material-ui-core/jest.config.js",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "ui-core": {
       "root": "libs/ui-core",
@@ -129,20 +160,27 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/ui-core/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/ui-core/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui-core"],
+          "outputs": [
+            "coverage/libs/ui-core"
+          ],
           "options": {
             "jestConfig": "libs/ui-core/jest.config.js",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "utils": {
       "root": "libs/utils",
@@ -151,29 +189,17 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/**/*.ts"
+            ]
           }
         }
-      }
+      },
+      "tags": []
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "blog"
+  }
 }
